@@ -1,0 +1,46 @@
+{
+  "name": "github-copilot-view",
+  "displayName": "GithubCopilotView",
+  "description": "Preview copied GitHub Copilot Chat results in VS Code or a browser.",
+  "version": "0.0.1",
+  "publisher": "dev-local",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "githubCopilotView.showResult",
+        "title": "Show Copilot Result"
+      }
+    ],
+    "configuration": {
+      "title": "GithubCopilotView",
+      "properties": {
+        "githubCopilotView.fontSize": {
+          "type": "number",
+          "default": 14,
+          "minimum": 6,
+          "description": "Font size (in pixels) for the text shown in the browser preview."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "check-types": "tsc --noEmit",
+    "test": "npm run check-types && tsc --outDir dist/test --rootDir src && node dist/test/test/resultFormatter.test.js && node dist/test/test/resultDocument.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/vscode": "^1.95.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.2"
+  }
+}
